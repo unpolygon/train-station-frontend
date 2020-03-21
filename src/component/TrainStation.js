@@ -11,10 +11,12 @@ const TrainStation = () => {
     const [getData,setGetData] = useState({});
 
     useEffect(() => {
-        axios.get(ENDPOINT+'/station').then((response) => {
-            let divGet = document.getElementById('getData');
-            divGet.innerHTML = JSON.stringify(response.data);
-        });
+        setInterval(() => {
+            axios.get(ENDPOINT+'/station').then((response) => {
+                let divGet = document.getElementById('getData');
+                divGet.innerHTML = JSON.stringify(response.data);
+            });    
+        },1000);
     });
 
     const onClickReset = () => {
