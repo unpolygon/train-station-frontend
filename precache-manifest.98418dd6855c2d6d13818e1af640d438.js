@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "20c31eed7c1558db06f27039de146b7a",
+    "revision": "f5b22fc8b1fdc885d016a9abfac2a0cd",
     "url": "/train-station-frontend/index.html"
   },
   {
-    "revision": "b875f954d43248a947d2",
+    "revision": "23c7e3a6b31e8176e284",
     "url": "/train-station-frontend/static/css/main.9134593e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/train-station-frontend/static/js/2.8d6e2585.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b875f954d43248a947d2",
-    "url": "/train-station-frontend/static/js/main.612cd08c.chunk.js"
+    "revision": "23c7e3a6b31e8176e284",
+    "url": "/train-station-frontend/static/js/main.93fc266c.chunk.js"
   },
   {
     "revision": "d1327b30ac31e4f6b4b7",
