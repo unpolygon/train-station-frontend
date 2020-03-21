@@ -12,12 +12,12 @@ const TrainStation = () => {
 
     useEffect(() => {
         setInterval(() => {
-            console.log('5000ms');
+            console.log('3000ms');
             axios.get(ENDPOINT+'/station').then((response) => {
                 let divGet = document.getElementById('getData');
                 divGet.innerHTML = JSON.stringify(response.data);
             });    
-        },5000);
+        },3000);
     });
 
     const onClickReset = () => {
