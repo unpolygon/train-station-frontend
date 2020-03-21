@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/train-station-frontend/static/css/main.9134593e.chunk.css",
-    "main.js": "/train-station-frontend/static/js/main.49a37684.chunk.js",
-    "main.js.map": "/train-station-frontend/static/js/main.49a37684.chunk.js.map",
+    "main.js": "/train-station-frontend/static/js/main.612cd08c.chunk.js",
+    "main.js.map": "/train-station-frontend/static/js/main.612cd08c.chunk.js.map",
     "runtime-main.js": "/train-station-frontend/static/js/runtime-main.64f08a74.js",
     "runtime-main.js.map": "/train-station-frontend/static/js/runtime-main.64f08a74.js.map",
     "static/js/2.8d6e2585.chunk.js": "/train-station-frontend/static/js/2.8d6e2585.chunk.js",
     "static/js/2.8d6e2585.chunk.js.map": "/train-station-frontend/static/js/2.8d6e2585.chunk.js.map",
     "index.html": "/train-station-frontend/index.html",
-    "precache-manifest.295f0e3299d0d7bb6390b1bcc0fad52f.js": "/train-station-frontend/precache-manifest.295f0e3299d0d7bb6390b1bcc0fad52f.js",
+    "precache-manifest.7ffcb581ae7b300ac1ce3ed789e49fa0.js": "/train-station-frontend/precache-manifest.7ffcb581ae7b300ac1ce3ed789e49fa0.js",
     "service-worker.js": "/train-station-frontend/service-worker.js",
     "static/css/main.9134593e.chunk.css.map": "/train-station-frontend/static/css/main.9134593e.chunk.css.map",
     "static/js/2.8d6e2585.chunk.js.LICENSE.txt": "/train-station-frontend/static/js/2.8d6e2585.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.64f08a74.js",
     "static/js/2.8d6e2585.chunk.js",
     "static/css/main.9134593e.chunk.css",
-    "static/js/main.49a37684.chunk.js"
+    "static/js/main.612cd08c.chunk.js"
   ]
 }
