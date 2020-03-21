@@ -1,0 +1,18 @@
+body{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    
+    .TrainStation{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #getData{
+        background-color: rgba(205, 241, 175, 0.37);
+        display: grid;
+        place-items: center;
+        padding: 10px;
+    }
+}

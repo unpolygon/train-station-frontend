@@ -1,0 +1,23 @@
+.Station{
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    .eachStation{
+        height: 500px;
+        width: 200px;
+        background-color: grey;
+        padding: 0 50px;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        p{
+            border: 2px black solid;
+        }
+    }
+    .zero{
+        background-color: #87DCC0;
+    }
+    .one{
+        background-color: #88BBE4;
+    }
+}

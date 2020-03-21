@@ -1,0 +1,29 @@
+.Train{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75vw;
+    margin-bottom: 30px;
+    div{
+        margin: 10px;
+    }
+    .zero{
+        background-color: #FEC8D8;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .one{
+        background-color: #FFDFD3;
+        display: flex;
+        justify-content: flex-end;
+    }
+    span{
+        word-wrap: break-word;
+        height: 100px;
+        width: 200px;
+    }
+    button{
+        height: 50px;
+    }
+}
