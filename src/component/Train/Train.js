@@ -33,7 +33,7 @@ const Train = (props) => {
 
         let sp = document.getElementById('Train'+trainCurrent);
         
-        axios.get(ENDPOINT+'station/arrived/'+trainCurrent)
+        axios.get(ENDPOINT+'/station/arrived/'+trainCurrent)
         .then(response => {
             console.log(response);
             if(response.data.train.status !== 'error'){
