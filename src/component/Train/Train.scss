@@ -1,29 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Dax:400,900');
+$font: 'Dax',sans-serif;
 .Train{
     position: absolute;
     bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75vw;
+    left: 20%;
+    width:48em;
     margin-bottom: 30px;
-    div{
-        margin: 10px;
+    > div{
+        margin: 2em;
     }
-    .zero{
-        background-color: #FEC8D8;
-        display: flex;
-        justify-content: flex-start;
-    }
-    .one{
-        background-color: #FFDFD3;
-        display: flex;
-        justify-content: flex-end;
-    }
-    span{
-        word-wrap: break-word;
-        height: 100px;
-        width: 200px;
+    .coverButton{
+        position: relative;
+        height: 3.3em;
+        width: 44em;
     }
     button{
-        height: 50px;
+        outline: none;
+        font: $font;
+        font-size: 1em;
+        height: 3.3em;
+        border: none;
+        padding: 0 3em;
+        border-radius: .5em;
+        background-color: white;
+        opacity: 1;
+        box-shadow: 0 14px 25px rgba(0, 0, 0, 0.123), 0 10px 10px rgba(0,0,0,0.012);
+        transition: transform .5s;
+        will-change: transform;
+        position: absolute;
+        &:active{
+            box-shadow: none;
+        }
+    }
+    .forward{
+        position: absolute;
+        left: 0;
+    }
+    .backward{
+        position: absolute;
+        right: 0;
+    }
+    .forwardAnimation{
+        animation-name: forward;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    .backwardAnimation{
+        animation-name: backward;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    @keyframes forward{
+        70%,to{
+            transform: translateX(22em);   
+        }
+    }
+    @keyframes backward {
+        70%,to{
+            transform: translateX(-22em);
+        }
     }
 }

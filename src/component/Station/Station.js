@@ -1,38 +1,59 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import axios from 'axios';
+import Collapse from './Collapse/Collapse';
 import './Station.scss';
 
 var ENDPOINT = 'https://train-station.herokuapp.com';
 
 const Station = (props) => {
-    const [trainArrived,setTrainArrived] = useState(false);
+    var data = props.data;
 
-    const onClickStation = (e) => {
+    useEffect(() => {
+        if(Object.keys(data).length > 0){
+            changeColor();
+        }
+    });
+
+    const changeColor = () => {
+        let station = data.station;
+        for(let i = 0 ; i < 2; i++){
+            let divStation = document.getElementById(`st${i}`);
+            console.log(divStation);
+            let btn = divStation.child;
+            let status = station[i].status; 
+            divStation.classList.remove(`green`);
+            divStation.classList.remove(`yellow`);
+            divStation.classList.remove(`red`);
+            divStation.classList.add(`${status}`);
+        }
+    }
+
+    const updateText = () => {
+        let station = data.station;
+    }
+
+    const onClickStation = async (e) => {
         e.preventDefault();
         let station = e.target.name;
-        let sp = document.getElementById('Station'+station);
-
-        axios.get(ENDPOINT+'/station/release/'+station).then((response) => {
-            sp.innerHTML =JSON.stringify(response.data);
-            let dest = response.data.station.dest;
-            dest = 'st'+(!!dest ? '1' : '0');
-            let divCurrent = document.getElementById(dest);
-            divCurrent.style.backgroundColor = response.data.station.status;
-            props.data(response.data);
-        });   
+        await axios.get(ENDPOINT+'/station/release/'+station)
+        .catch(err => console.log(err)); 
     }
 
     return(
         <div className='Station'>
-            <div className='eachStation zero' id='trainZero'>
-                <p id='st0'>Station 0</p>
-                <input type='submit' value='Station0' name='0' onClick={onClickStation}/>
-                <p>MONITOR: <span id='Station0'>Station 0</span></p>
+            <div className='eachStation zero' id='st0'>
+                <button name='0' onClick={onClickStation}>
+                    <span>Station 0</span>
+                </button>
+                <p>Status: Waiting</p>
+                <p>Train: Train0</p>
             </div>
-            <div className='eachStation one' id = 'trainOne'>
-                <p id='st1'>Station 1</p>
-                <input type='submit' value='Station1' name='1' onClick={onClickStation}/>
-                <p>MONITOR: <span id='Station1'>Station 0</span></p>
+            <div className='eachStation one red' id = 'st1'>
+                <button name='1' onClick={onClickStation}>
+                    <span>Station 1</span>
+                </button>
+                <p>Status: Waiting</p>
+                <p>Train: Train0</p>
             </div>
         </div>
     );

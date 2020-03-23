@@ -8,17 +8,22 @@ var ENDPOINT = 'https://train-station.herokuapp.com';
 
 const TrainStation = () => {
     const [sendData,setSendData] = useState({});
-    const [getData,setGetData] = useState({});
+    const [getData,setGetData] = useState('');
+
+    async function fetchData(){
+        await axios.get(ENDPOINT+'/station').then((response) => {
+            let data = JSON.stringify(response.data);
+            setGetData(data);
+            setSendData(response.data);
+        })
+    }
 
     useEffect(() => {
-        setInterval(() => {
-            console.log('3000ms');
-            axios.get(ENDPOINT+'/station').then((response) => {
-                let divGet = document.getElementById('getData');
-                divGet.innerHTML = JSON.stringify(response.data);
-            });    
-        },3000);
-    });
+        return setInterval(() => {
+            fetchData();
+            console.log('get Data');
+        },3000);     
+    },[]);
 
     const onClickReset = () => {
         axios.get(ENDPOINT+'/station/reset').then((response) => {
@@ -29,9 +34,9 @@ const TrainStation = () => {
 
     return(
         <div className='TrainStation'>
-            <div id='getData'></div>
+            <div id='getData'>{getData}</div>
             <Train data={sendData}/>
-            <Station data={e => setSendData(e)}/>
+            <Station data={sendData}/>
             <button onClick={onClickReset}>RESET DATA</button>
         </div>
     );

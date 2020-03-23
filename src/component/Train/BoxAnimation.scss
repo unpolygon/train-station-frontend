@@ -1,0 +1,23 @@
+.BoxAnimation{
+    margin-left: 10em;
+    .box{
+        height: 1em;
+        width: 3em;
+        background-color: white;
+    }
+
+    @keyframes pulse {
+        from, 
+        40% {
+          opacity: 0; 
+        }
+        50%
+        {
+          opacity: 0.5;
+        }
+        80%,
+        to {
+          opacity: 1;
+        }
+      }
+}

@@ -1,73 +1,79 @@
 import React,{useState, useEffect} from 'react';
 import axios from 'axios';
+import BoxAnimation from './BoxAnimation';
 import './Train.scss';
 
 var ENDPOINT = 'https://train-station.herokuapp.com';
 
 const Train = (props) => {
-    const [stationTrainZero,setStationTrainZero] = useState(1); 
-    const [stationTrainOne,setStationTrainOne] = useState(0); 
-    var res = props.data;
+    var data = props.data;
 
     useEffect(() => {
-            if(Object.keys(res).length !== 0){
-                console.log(res);
-                let station = res.station.dest;
-                let train = +res.station.train;
-                console.log(+train);
-                console.log(!!train);
-                let divTrain = ( !!train ? 
-                    document.getElementById('one'): 
-                    document.getElementById('zero'));
-                console.log(divTrain);
-                if(res.station.status === 'red'){
-                    divTrain.style.justifyContent='center';
-                }
-            }
+        if(Object.keys(data).length > 0) insertAnimation();
     });
 
-    const onClickTrain = (e) => {
-        //train arrived
-        let trainCurrent = parseInt(e.target.name);
-        console.log('trainCurrent ',trainCurrent);
+    const changeText = (btn,i,dest) => {
+        if(dest === 0) btn.textContent = `< Train${i}`;
+        if(dest === 1) btn.textContent = `Train${i} >`;
+    }
 
-        let sp = document.getElementById('Train'+trainCurrent);
-        
-        axios.get(ENDPOINT+'/station/arrived/'+trainCurrent)
-        .then(response => {
-            console.log(response);
-            if(response.data.train.status !== 'error'){
-                let train = response.data.train;
-                console.log(train);
-                let stationCurrent = response.data.station;
-                let dest = stationCurrent.dest;
-                let status = stationCurrent.status;
-                let divTrain = ( !!+trainCurrent ? 
-                    document.getElementById('one'): 
-                    document.getElementById('zero'));
-                if(dest === 0){
-                    divTrain.style.justifyContent='flex-start';
+    const removeClass = (btn) => {
+        btn.classList.remove('forwardAnimation');
+        btn.classList.remove('backwardAnimation');
+        btn.classList.remove('forward');
+        btn.classList.remove('backward');
+    }
+
+    const insertAnimation = () => {
+        let train = data.train;
+        for(let i = 0; i < 2; i++){
+            let btn = document.getElementById(i);
+
+            removeClass(btn);
+            changeText(btn,i,train[i].dest);
+
+            if(train[i].status === 'error' || train[i].status === 'going'){
+                if(train[i].dest === 1){
+                    btn.classList.add('forward');
+                    btn.classList.add('forwardAnimation');
                 }else{
-                    divTrain.style.justifyContent='flex-end';
+                    btn.classList.add('backward');
+                    btn.classList.add('backwardAnimation');
+                }
+            }else if(train[i].status === 'stay'){
+                if(train[i].dest === 1){
+                    btn.classList.add('backward');
+                }else{
+                    btn.classList.add('forward');
+                }
+            }else if(train[i].status === 'waiting'){
+                if(train[i].dest === 1){
+                    btn.classList.add('forward')
+                }else{
+                    btn.classList.add('backward')
+
                 }
             }
-            sp.innerHTML = JSON.stringify(response.data);
-        });
+        }
+    }
+
+    const onClickTrain = async (e) => {
+        let trainCurrent = parseInt(e.target.id);        
+        await axios.get(ENDPOINT+'/station/arrived/'+trainCurrent)
+        .catch(err => console.log(err)); 
     }
     
     return(
         <div className='Train'>
-            <div className='zero' id='zero'>
-                {/* <p>Train0 next is Station {stationTrainZero} <br /> */}
-                    <span id = 'Train0'>0</span>
-                {/* </p> */}
-                <input type='submit' value='Train0' name='0' onClick={onClickTrain}/>
+            <div>
+                <div className='coverButton'>
+                    <button id='0' onClick={onClickTrain} className='forward'>Train0 &gt;</button>
+                </div>
             </div>
-            <div className ='one' id='one'>
-                {/* <p>Train1 next Station is {stationTrainOne} <br /> */}
-                    <span id = 'Train1'>1</span>
-                {/* </p> */}
-                <input type='submit' value='Train1' name='1' onClick={onClickTrain}/>
+            <div>
+                <div className='coverButton'>
+                    <button id='1' onClick={onClickTrain} className='backward'>&lt; Train1</button>
+                </div>
             </div>
         </div>
     );
